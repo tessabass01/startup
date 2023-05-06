@@ -1,1 +1,1 @@
-Hey! This is my new repository!
+Hey! This is the new repository!
