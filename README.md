@@ -17,7 +17,6 @@ The data that will be stored in the application are the compatibility scores tha
 The real-time data that is generated is the compatibility scores. I have not yet decided how to generate these scores yet whether I want to generate an algorithm or just use a random number generator; nonetheless, a score will be generated everytime the calculate button is clicked. However, if the input has previously been used, it should generate the same score as previously, as not to allow the user to try multiple times with the same name to get a different score.
 
 ## Images
-![lets see if this works]
-(https://github.com/tessabass01/startup/blob/main/Screen%20Shot%202023-05-09%20at%2011.01.43%20PM.png)
-(https://github.com/tessabass01/startup/blob/main/Screen%20Shot%202023-05-09%20at%2011.03.05%20PM.png)
-(https://github.com/tessabass01/startup/blob/main/Screen%20Shot%202023-05-09%20at%2011.03.39%20PM.png)
+![Home Screen After Logging In](Screen%20Shot%202023-05-09%20at%2011.01.43%20PM.png)
+![Screen While Chemistry is Being Calculated](Screen%20Shot%202023-05-09%20at%2011.03.05%20PM.png)
+![Screen After One Calculation is Finished](Screen%20Shot%202023-05-09%20at%2011.03.39%20PM.png)
