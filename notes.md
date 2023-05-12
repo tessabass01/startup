@@ -90,3 +90,43 @@ section:hover {
 }
 ```
 You can find a list of other pseudo selectors [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes).
+
+## Fonts
+There are 4 major families of fonts that can be defined in the `font-family` property: `Serif`, `san-serif`, `fixed`, and `symbol`.
+
+ ### Importing Fonts
+ If you would like to import a font instead of hosting font files on your server, use an inport statement like this:
+ ```
+ @import url('https://fonts.googleapis.com/css2?family=Rubik Microbe&display=swap');
+
+p {
+  font-family: 'Rubik Microbe';
+}
+```
+
+## Animation
+Here is an example of animation with key frames:
+```
+p {
+  text-align: center;
+  font-size: 20vh;
+
+  animation-name: demo;
+  animation-duration: 3s;
+}
+
+@keyframes demo {
+  from {
+    font-size: 0vh;
+  }
+
+  95% {
+    font-size: 21vh;
+  }
+
+  to {
+    font-size: 20vh;
+  }
+}
+```
+
