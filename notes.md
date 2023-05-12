@@ -9,8 +9,7 @@ Run a deployment script:
 # CSS Notes
 ## Three ways to associate CSS with HTML
 1. Use style attribute of an HTML element --> `<p style="color:green">text here</p>`
-2. Use HTML link element to create a hyperlink to an external file containing the CSS rules --> `<link rel="stylesheet" href="styles.css" />`
-3. Use HTML style element to define CSS rules within the document --> 
+2. Use HTML style element to define CSS rules within the document --> 
 ```
 <head>
   <style>
@@ -23,6 +22,7 @@ Run a deployment script:
   <p>CSS</p>
 </body>
 ```
+3. Use HTML link element to create a hyperlink to an external file containing the CSS rules --> `<link rel="stylesheet" href="styles.css" />`
 styles.css -->
 ```
 p {
@@ -33,10 +33,12 @@ Using the link element is preferred
 
 ## Selecting the correct elements
 If you want to change the font of everything, you would want to select everything with the body (or *wildcard) like this --> 
-```body {
+```
+body {
   font-family: sans-serif;
 }
 ```
+Box Model and Associated CSS Lingo
 ![Image of box model and associated CSS lingo](https://github.com/webprogramming260/.github/raw/main/profile/css/introduction/cssBoxModel.jpg)
 
 ### Combinators
