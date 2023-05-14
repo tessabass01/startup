@@ -130,3 +130,24 @@ p {
 }
 ```
 
+## Responsive Design
+To prevent the website from automatically scaling, use this meta tag at the top of your code:
+```
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+```
+The float css property moves an element to the left or the right of its container element and allows inline elements to wrap around it (like with an image or something). Say for example `aside` is an image and we wanted the text to wrap around it. This piece of code would do the job:
+```
+aside {
+  float: right;
+  padding: 3em;
+  margin: 0.5em;
+  border: black solid thin;
+}
+```
+Possible display values:
+1. none - do not display
+2. block - display element with width of parent element (p and div default)
+3. inline - display element with sidth only as big as its content (b or span default)
+4. flex - display this element's children in a flexible notation
+5. grid - display this element's children in a grid notation (left (A) right (B), lower left(C) lower right(D))
+
