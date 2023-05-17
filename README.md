@@ -20,3 +20,8 @@ The real-time data that is generated is the compatibility scores. I have not yet
 ![Home Screen After Logging In](Screen%20Shot%202023-05-09%20at%2011.01.43%20PM.png)
 ![Screen While Chemistry is Being Calculated](Screen%20Shot%202023-05-09%20at%2011.03.05%20PM.png)
 ![Screen After One Calculation is Finished](Screen%20Shot%202023-05-09%20at%2011.03.39%20PM.png)
+
+## Update
+With this new version of Chemistry Calculator that was just dropped, the design is much sleeker. New bright colors, sophisticated fonts, color-changing buttons, and easy navigation between pages make this version captivating for those determined to find answers for romance. Not to mention the new animation, which added an additional 2 websites to the mix--I bet you couldn't even tell! 
+
+The link is [here](https://startup.chemistrycalculator.click/index.html)!
