@@ -38,15 +38,15 @@
           </li>
         </menu>
       </nav>
-      <p class="welcome">Welcome, <span class="username-formatted">Mystery Player</span></p>
+      <p class="welcome">Welcome, <span class="username-formatted"></span></p>
     </header>
 
     <main class="container-fluid">
       <div class="players">
         <div id="player-messages">
-          <div class="event"><span class="username-formatted">Mystery Player</span> and <span class="other-player">Doug</span> are <span class="percentage">23</span>% compatible</div>
-          <div class="event"><span class="username-formatted">Mystery Player</span> and <span class="other-player">George</span> are <span class="percentage">74</span>% compatible</div>
-          <div class="event"><span class="username-formatted">Mystery Player</span> and <span class="other-player">Bill</span> are <span class="percentage">13</span>% compatible</div>
+          <div class="event"><span class="username-formatted"></span> and <span class="inputname-formatted">Doug</span> are <span class="percentage">23</span>% compatible</div>
+          <div class="event"><span class="username-formatted"></span> and <span class="inputname-formatted">George</span> are <span class="percentage">74</span>% compatible</div>
+          <div class="event"><span class="username-formatted"></span> and <span class="inputname-formatted">Bill</span> are <span class="percentage">13</span>% compatible</div>
         </div>
       </div>
 
@@ -54,12 +54,12 @@
             <div class="animated-shape"></div>
             <div id="heart"></div>
             <div class="names">
-                <div class="username">Mystery Player</div>
+                <div class="username"></div>
                 <input type="text" class="inputname" placeholder="Their name here"></input>
             </div>
             <div class="calculate-button">
                 <form method="get" action="calculating.html">
-                    <button type="submit" class="btn btn-primary">Calculate</button>
+                    <button type="submit" class="btn btn-primary" onclick="calculate()">Calculate</button>
                 </form>
             </div>
         </div>
@@ -71,5 +71,7 @@
         <a class="text-reset" href="https://github.com/tessabass01/startup">Source</a>
       </div>
     </footer>
+
+    <script defer src="play.js"></script>
   </body>
 </html>
