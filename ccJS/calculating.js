@@ -2,9 +2,14 @@ function getPlayerName() {
     return localStorage.getItem('userName');
   }
 
+function createPercentage() {
+    return Math.floor(Math.random() * 100)
+}
+
 function calculate() {
     const inputNameEl = document.querySelector("input.inputname");
     localStorage.setItem("inputName", inputNameEl.value);
+    localStorage.setItem("perc", createPercentage());
     window.location.href = "calculating.html";
   }
 
