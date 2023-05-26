@@ -39,7 +39,7 @@
     </header>
 
     <main class="container-fluid text-center">
-        <h2>Who is <span class="username-formatted">Mystery Player</span> most compatible with?</h2>
+        <h2>Who is <span class="username-formatted"></span> most compatible with?</h2>
       <table class="table table-striped-columns">
         <thead class="table-dark">
           <tr>
@@ -49,26 +49,7 @@
             <th>Date</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td class="other-player">Your input</td>
-            <td class="percentage">86%</td>
-            <td class="date">May 16, 2023</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td class="other-player">George</td>
-            <td class="percentage">74%</td>
-            <td class="date">May 16, 2023</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td class="other-player">Doug</td>
-            <td class="percentage">23%</td>
-            <td class="date">May 16, 2023</td>
-          </tr>
-        </tbody>
+        <tbody id="scores"></tbody>
       </table>
     </main>
 
@@ -82,5 +63,6 @@
         >
       </div>
     </footer>
+    <script src="scores.js"></script>
   </body>
 </html>
