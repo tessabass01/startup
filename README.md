@@ -21,7 +21,10 @@ The real-time data that is generated is the compatibility scores. I have not yet
 ![Screen While Chemistry is Being Calculated](Screen%20Shot%202023-05-09%20at%2011.03.05%20PM.png)
 ![Screen After One Calculation is Finished](Screen%20Shot%202023-05-09%20at%2011.03.39%20PM.png)
 
-## Update
+## CSS Update
 With this new version of Chemistry Calculator that was just dropped, the design is much sleeker. New bright colors, sophisticated fonts, color-changing buttons, and easy navigation between pages make this version captivating for those determined to find answers for romance. Not to mention the new animation, which added an additional 2 websites to the mix--I bet you couldn't even tell! 
 
 The link is [here](https://startup.chemistrycalculator.click/index.html)!
+
+## JS Update
+With this new version of the Chemistry Calculator that was just dropped, the user interface is much more personalized. When you log in, the play.html welcomes you by name, the game lets you know when it is connected, and your name appears on the heart, awaiting the user's input for the other name. When you click calculate, the heart fluctuates while the JavaScript calculates the compatibility between the user and the user's input. The names stay there while the calculation is being completed, and then a compatibility percentage appears. Scores immediately show up on the left side of the screen and on the scores page. The scores page is ranked according to the highest compatibility scores. 
