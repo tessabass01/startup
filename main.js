@@ -1,11 +1,11 @@
-let x = 1 + 1;
+const express = require('express');
+const app = express();
 
-console.log(x);
+app.get('/*', (req, res) => {
+  res.send({ url: req.originalUrl });
+});
 
-function double(x) {
-  return x * 2;
-}
-
-x = double(x);
-
-console.log(x);
+const port = 8080;
+app.listen(port, function () {
+  console.log(`Listening on port ${port}`);
+});
