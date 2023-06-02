@@ -145,6 +145,57 @@ return scores;
 saveScore(getPercentage())
 
 
+// const url = "https://numbergenerator.org/randomnumbergenerator/1-100";
+// fetch(url)
+//   .then((x) => x.json())
+//   .then((response) => {
+//     document.querySelector("html").textContent = JSON.stringify(
+//       response,
+//       null,
+//       "  "
+//     );
+//   });
+//   .then((one) => console.log(one));
+
+
+
+// function displayQuote(data) {
+const api_url ="https://zenquotes.io/api/quotes/";
+
+async function getapi(url)
+{
+    const response = await fetch(url);
+    var data = await response.json();
+    console.log(data);
+}
+    
+function displayQuote(data) {
+    getapi(api_url)
+    .then((response) => response.json())
+    .then((data) => {
+      const containerEl = document.querySelector('#quote');
+
+      const quoteEl = document.createElement('p');
+      quoteEl.classList.add('quote');
+      const authorEl = document.createElement('p');
+      authorEl.classList.add('author');
+
+      quoteEl.textContent = data.content;
+      authorEl.textContent = data.author;
+
+      containerEl.appendChild(quoteEl);
+      containerEl.appendChild(authorEl);
+    });
+}
+
+
+    // fetch('https://numbergenerator.org/randomnumbergenerator/1-100')
+    //     .then((response) => response.json())
+    //     .then((vari) => console.log(vari))
+    //     .then((data) => {
+    //         const containerEl = document.querySelector('#percent');
+
+    //     })}
 
 
 
