@@ -104,42 +104,94 @@ function updateChat() {
 //         return localStorage.getItem('userName') ?? 'Mystery player';
 //       }
 
-function saveScore(score) {
+async function saveScore(score) {
     const userName = getOtherPlayerName();
+    const date = new Date().toLocaleDateString();
+    const newScore = {name: userName, score: score, date: date};
+
+    try {
+      const response = await fetch('/api/score', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(newScore),
+      });
+
+      // Store what the service gave us as the high scores
+      const scores = await response.json();
+      localStorage.setItem('scores', JSON.stringify(scores));
+    } catch {
+      // If there was an error then just track scores locally
+      updateScoresLocal(newScore);
+    }
+  }
+
+
+// function saveScore(score) {
+//     const userName = getOtherPlayerName();
+//     let scores = [];
+//     const scoresText = localStorage.getItem('scores');
+//     if (scoresText) {
+//     scores = JSON.parse(scoresText);
+//     }
+//     scores = updateScores(userName, score, scores);
+
+//     localStorage.setItem('scores', JSON.stringify(scores));
+//     console.log(scores)
+// }
+
+
+function updateScoresLocal(newScore) {
     let scores = [];
     const scoresText = localStorage.getItem('scores');
     if (scoresText) {
-    scores = JSON.parse(scoresText);
+      scores = JSON.parse(scoresText);
     }
-    scores = updateScores(userName, score, scores);
-
-    localStorage.setItem('scores', JSON.stringify(scores));
-    console.log(scores)
-}
-
-function updateScores(userName, score, scores) {
-    const date = new Date().toLocaleDateString();
-    const newScore = { name: userName, score: score, date: date };
 
     let found = false;
     for (const [i, prevScore] of scores.entries()) {
-    if (score > prevScore.score) {
+      if (newScore > prevScore.score) {
         scores.splice(i, 0, newScore);
         found = true;
         break;
+      }
     }
-}
 
-if (!found) {
-    scores.push(newScore);
-}
+    if (!found) {
+      scores.push(newScore);
+    }
 
-if (scores.length > 10) {
-    scores.length = 10;
-}
+    if (scores.length > 10) {
+      scores.length = 10;
+    }
 
-return scores;
-}
+    localStorage.setItem('scores', JSON.stringify(scores));
+  };
+
+
+
+// function updateScores(userName, score, scores) {
+//     const date = new Date().toLocaleDateString();
+//     const newScore = { name: userName, score: score, date: date };
+
+//     let found = false;
+//     for (const [i, prevScore] of scores.entries()) {
+//     if (score > prevScore.score) {
+//         scores.splice(i, 0, newScore);
+//         found = true;
+//         break;
+//     }
+// }
+
+// if (!found) {
+//     scores.push(newScore);
+// }
+
+// if (scores.length > 10) {
+//     scores.length = 10;
+// }
+
+// return scores;
+// }
 
 
 saveScore(getPercentage())
@@ -160,34 +212,38 @@ saveScore(getPercentage())
 
 
 // function displayQuote(data) {
-const api_url ="https://zenquotes.io/api/quotes/";
 
-async function getapi(url)
-{
-    const response = await fetch(url);
-    var data = await response.json();
-    console.log(data);
-}
+
+
+// const api_url ="https://zenquotes.io/api/quotes/";
+
+// async function getapi(url)
+// {
+//     const response = await fetch(url);
+//     var data = await response.json();
+//     console.log(data);
+// }
     
-function displayQuote(data) {
-    getapi(api_url)
-    .then((response) => response.json())
-    .then((data) => {
-      const containerEl = document.querySelector('#quote');
+// function displayQuote(data) {
+//     fetch("https://api.quotable.io/random")
+//     .then((response) => response.json())
+//     .then((data) => {
+//       const containerEl = document.querySelector('#quote');
 
-      const quoteEl = document.createElement('p');
-      quoteEl.classList.add('quote');
-      const authorEl = document.createElement('p');
-      authorEl.classList.add('author');
+//       const quoteEl = document.createElement('p');
+//       quoteEl.classList.add('quote');
+//       const authorEl = document.createElement('p');
+//       authorEl.classList.add('author');
 
-      quoteEl.textContent = data.content;
-      authorEl.textContent = data.author;
+//       quoteEl.textContent = data.content;
+//       authorEl.textContent = data.author;
 
-      containerEl.appendChild(quoteEl);
-      containerEl.appendChild(authorEl);
-    });
-}
+//       containerEl.appendChild(quoteEl);
+//       containerEl.appendChild(authorEl);
+//     });
+// }
 
+// displayQuote();
 
     // fetch('https://numbergenerator.org/randomnumbergenerator/1-100')
     //     .then((response) => response.json())
