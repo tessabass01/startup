@@ -29,51 +29,70 @@ playerNameEl.textContent = getPlayerName();
 const otherPlayerNameEl = document.querySelector('.inputname');
 otherPlayerNameEl.textContent = getOtherPlayerName();
 
-// async function saveScore(score) {
-//   const userName = getPlayerName();
-//   const otherName = getOtherPlayerName();
-//   const date = new Date().toLocaleDateString();
-//   const newScore = {name: `${userName} + ${otherName}`, score: score, date: date};
 
-//   try {
-//     const response = await fetch('/api/score', {
-//       method: 'POST',
-//       headers: {'content-type': 'application/json'},
-//       body: JSON.stringify(newScore),
-//     });
+async function saveScore(score) {
+  const userName = getPlayerName();
+  const otherName = getOtherPlayerName();
+  const date = new Date().toLocaleDateString();
+  const newScore = {couple: `${userName} + ${otherName}`, compatibility: `${score}`, date: date};
 
-//     // Store what the service gave us as the high scores
-//     const scores = await response.json();
-//     localStorage.setItem('scores', JSON.stringify(scores));
-//   } catch {
-//     // If there was an error then just track scores locally
-//     updateScoresLocal(newScore);
-//   }
-// }
+  try {
+    const response = await fetch('/api/score', {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify(newScore),
+    });
 
-// function updateScoresLocal(newScore) {
-//   let scores = [];
-//   const scoresText = localStorage.getItem('scores');
-//   if (scoresText) {
-//     scores = JSON.parse(scoresText);
-//   }
+    // Store what the service gave us as the high scores
+    const scores = await response.json();
+    localStorage.setItem('scores', JSON.stringify(scores));
+  } catch {
+    // If there was an error then just track scores locally
+    updateScoresLocal(newScore);
+  }
+}
 
-//   let found = false;
-//   for (const [i, prevScore] of scores.entries()) {
-//     if (newScore > prevScore.score) {
-//       scores.splice(i, 0, newScore);
-//       found = true;
-//       break;
-//     }
-//   }
+function updateScoresLocal(newScore) {
+  let scores = [];
+  const scoresText = localStorage.getItem('scores');
+  if (scoresText) {
+    scores = JSON.parse(scoresText);
+  }
 
-//   if (!found) {
-//     scores.push(newScore);
-//   }
+  let found = false;
+  for (const [i, prevScore] of scores.entries()) {
+    if (newScore > prevScore.score) {
+      scores.splice(i, 0, newScore);
+      found = true;
+      break;
+    }
+  }
 
-//   if (scores.length > 10) {
-//     scores.length = 10;
-//   }
+  if (!found) {
+    scores.push(newScore);
+  }
 
+  if (scores.length > 10) {
+    scores.length = 10;
+  }
+
+  localStorage.setItem('scores', JSON.stringify(scores));
+}
+
+
+// try {
+//   const response = await fetch('/api/score');
+
+//   // Store what the service gave us as the high scores
+//   const scores = await response.json();
 //   localStorage.setItem('scores', JSON.stringify(scores));
+// } catch {
+//   // If there was an error then just track scores locally
+//   updateScoresLocal(newScore);
 // }
+
+
+// // const response = fetch('/api/score');
+// // score = await response.json();
+
+// saveScore(localStorage.getItem("perc"))

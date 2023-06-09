@@ -55,4 +55,3 @@ function displayScores(scores) {
 }
 
 loadScores();
-  

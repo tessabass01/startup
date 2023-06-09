@@ -10,7 +10,7 @@ function calculate() {
     const inputNameEl = document.querySelector("input.inputname");
     localStorage.setItem("inputName", inputNameEl.value);
     localStorage.setItem("perc", createPercentage());
-    updateScores()
+    updateScores();
     window.location.href = "calculating.html";
   }
 
@@ -61,9 +61,12 @@ async function saveScore(score) {
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(newScore),
       });
+      console.log("hello?")
+      console.log(JSON.stringify(newScore))
 
       // Store what the service gave us as the high scores
       const scores = await response.json();
+      console.log(scores);
       localStorage.setItem('scores', JSON.stringify(scores));
     } catch {
       // If there was an error then just track scores locally
@@ -98,4 +101,58 @@ function updateScoresLocal(newScore) {
     localStorage.setItem('scores', JSON.stringify(scores));
   };
 
-saveScore(getPercentage())
+  // async function loadScores() {
+  //   let scores = [];
+  //   try {
+  //     // Get the latest high scores from the service
+  //     const response = await fetch('/api/scores');
+  //     scores = await response.json();
+  
+  //     // Save the scores in case we go offline in the future
+  //     localStorage.setItem('scores', JSON.stringify(scores));
+  //   } catch {
+  //     // If there was an error then just use the last saved scores
+  //     const scoresText = localStorage.getItem('scores');
+  //     if (scoresText) {
+  //       scores = JSON.parse(scoresText);
+  //     }
+  //   }
+  
+  // }
+
+// const response = await fetch('/api/score');
+// score = await response.json();
+  
+// saveScore(response)
+
+// try {
+//   const response = await fetch('/api/score');
+
+//   // Store what the service gave us as the high scores
+//   const scores = await response.json();
+//   localStorage.setItem('scores', JSON.stringify(scores));
+// } catch {
+//   // If there was an error then just track scores locally
+//   updateScoresLocal(newScore);
+// }
+
+// // const response = await fetch('/api/score');
+// try {
+//   // Get the latest high scores from the service
+//   const score = await fetch('/api/score');
+//   // scores = await response.json();
+
+//   // Save the scores in case we go offline in the future
+//   localStorage.setItem('score', JSON.stringify(score));
+// } catch {
+//   // If there was an error then just use the last saved scores
+//   const scoresText = localStorage.getItem('score');
+//   // if (scoresText) {
+//   //   scores = JSON.parse(scoresText);
+//   }
+
+// console.log(response)
+// // // const response = fetch('/api/score');
+// // // score = await response.json();
+
+saveScore(localStorage.getItem("perc"))
