@@ -6,7 +6,7 @@ function getOtherPlayerName() {
     return localStorage.getItem('inputName');
   }
 
-  function createPercentage() {
+function createPercentage() {
     return Math.floor(Math.random() * 100)
 }
 
@@ -34,7 +34,7 @@ async function saveScore(score) {
   const userName = getPlayerName();
   const otherName = getOtherPlayerName();
   const date = new Date().toLocaleDateString();
-  const newScore = {couple: `${userName} + ${otherName}`, compatibility: `${score}`, date: date};
+  const newScore = {couple: `${userName} + ${otherName}`, compatibility: `${score}%`, date: date};
 
   try {
     const response = await fetch('/api/score', {
@@ -95,4 +95,4 @@ function updateScoresLocal(newScore) {
 // // const response = fetch('/api/score');
 // // score = await response.json();
 
-// saveScore(localStorage.getItem("perc"))
+saveScore(44)

@@ -155,4 +155,4 @@ function updateScoresLocal(newScore) {
 // // // const response = fetch('/api/score');
 // // // score = await response.json();
 
-saveScore(localStorage.getItem("perc"))
+saveScore(87)
