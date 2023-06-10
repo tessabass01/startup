@@ -14,6 +14,7 @@ function calculate() {
     const inputNameEl = document.querySelector("input.inputname");
     localStorage.setItem("inputName", inputNameEl.value);
     // localStorage.setItem("perc", createPercentage());
+    saveScore(createPercentage())
     window.location.href = "calculating.html";
   }
 
@@ -34,7 +35,7 @@ async function saveScore(score) {
   const userName = getPlayerName();
   const otherName = getOtherPlayerName();
   const date = new Date().toLocaleDateString();
-  const newScore = {couple: `${userName} + ${otherName}`, compatibility: `${score}%`, date: date};
+  const newScore = {name: `${userName} + ${otherName}`, score: score, date: date};
 
   try {
     const response = await fetch('/api/score', {
@@ -94,5 +95,3 @@ function updateScoresLocal(newScore) {
 
 // // const response = fetch('/api/score');
 // // score = await response.json();
-
-saveScore(44)

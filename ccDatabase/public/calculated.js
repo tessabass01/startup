@@ -7,10 +7,12 @@ function createPercentage() {
 }
 
 function calculate() {
+    // const newPerc = createPercentage()
     const inputNameEl = document.querySelector("input.inputname");
     localStorage.setItem("inputName", inputNameEl.value);
-    localStorage.setItem("perc", createPercentage());
-    updateScores();
+    // localStorage.setItem("score", createPercentage());
+    saveScore(getPercentage())
+    // updateScores();
     window.location.href = "calculating.html";
   }
 
@@ -33,10 +35,6 @@ otherPlayerNameEl.textContent = getOtherPlayerName();
 const displayedPlayerNameEl = document.querySelector('.inputname-formatted');
 displayedPlayerNameEl.textContent = getOtherPlayerName();
 
-function getPercentage() {
-    return localStorage.getItem('perc');
-}
-
 const text = `${getPlayerName()} and ${getOtherPlayerName()} are ${getPercentage()}% compatible`;
 
 const percentageEl = document.querySelector('#percent');
@@ -53,7 +51,7 @@ async function saveScore(score) {
     const userName = getPlayerName();
     const otherName = getOtherPlayerName();
     const date = new Date().toLocaleDateString();
-    const newScore = {couple: `${userName} + ${otherName}`, compatibility: `${score}%`, date: date};
+    const newScore = {name: `${userName} + ${otherName}`, score: score, date: date};
 
     try {
       const response = await fetch('/api/score', {
@@ -100,6 +98,24 @@ function updateScoresLocal(newScore) {
 
     localStorage.setItem('scores', JSON.stringify(scores));
   };
+
+  async function getPercentage() {
+    try {
+      // Get the latest high scores from the service
+      const response = await fetch('/api/score');
+      const score = await response.json();
+      console.log(34)
+      // Save the scores in case we go offline in the future
+      localStorage.setItem('score', JSON.stringify(score));
+    } catch {
+      // If there was an error then just use the last saved scores
+      const scoreText = localStorage.getItem('score');
+      if (scoreText) {
+        score = JSON.parse(scoreText);
+      }
+    }
+    //   return localStorage.getItem('perc');
+  }
 
   // async function loadScores() {
   //   let scores = [];
@@ -155,4 +171,4 @@ function updateScoresLocal(newScore) {
 // // // const response = fetch('/api/score');
 // // // score = await response.json();
 
-saveScore(87)
+// saveScore(getPercentage())

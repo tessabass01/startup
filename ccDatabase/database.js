@@ -30,4 +30,10 @@ function getHighScores() {
   return cursor.toArray();
 }
 
-module.exports = { addScore, getHighScores };
+function getScore(coupleName) {
+  const query = { name: coupleName };
+  const cursor = scoreCollection.find(query);
+  return cursor
+}
+
+module.exports = { addScore, getHighScores, getScore };

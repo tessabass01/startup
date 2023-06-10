@@ -28,6 +28,12 @@ apiRouter.post('/score', async (req, res) => {
   res.send(scores);
 });
 
+// GetScore
+apiRouter.get('/score', async (req, res) => {
+  DB.getScore(JSONstringify(req.body).name);
+  res.send(req.body);
+})
+
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
   res.sendFile('index.html', {root: 'public'});
