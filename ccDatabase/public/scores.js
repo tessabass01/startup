@@ -1,10 +1,9 @@
-function getPlayerName() {
-    return localStorage.getItem('userName');
-  }
+// function getPlayerName() {
+//     return localStorage.getItem('userName');
+//   }
 
-const playerNameEl = document.querySelector('.username-formatted');
-playerNameEl.textContent = getPlayerName();
-
+// const playerNameEl = document.querySelector('.username-formatted');
+// playerNameEl.textContent = getPlayerName();
 async function loadScores() {
   let scores = [];
   try {
