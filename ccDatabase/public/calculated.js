@@ -7,12 +7,8 @@ function createPercentage() {
 }
 
 function calculate() {
-    // const newPerc = createPercentage()
     const inputNameEl = document.querySelector("input.inputname");
     localStorage.setItem("inputName", inputNameEl.value);
-    // localStorage.setItem("score", createPercentage());
-    saveScore(getPercentage())
-    // updateScores();
     window.location.href = "calculating.html";
   }
 
@@ -29,23 +25,22 @@ function getOtherPlayerName() {
     return localStorage.getItem('inputName');
   }
 
-const otherPlayerNameEl = document.querySelector('.inputname');
-otherPlayerNameEl.textContent = getOtherPlayerName();
+async function helper() {
+  let percentage = await getPercentage();
+  const otherPlayerNameEl = document.querySelector('.inputname');
+  otherPlayerNameEl.textContent = getOtherPlayerName();
 
-const displayedPlayerNameEl = document.querySelector('.inputname-formatted');
-displayedPlayerNameEl.textContent = getOtherPlayerName();
+  const chatText = document.querySelector('#player-messages');
+    chatText.innerHTML =
+    `<div class="event"><span class="username-formatted">${getPlayerName()}</span> and <span class="inputname-formatted">${getOtherPlayerName()}</span> are <span class="percentage">${percentage}</span>% compatible</div>` + chatText.innerHTML;
 
-const text = `${getPlayerName()} and ${getOtherPlayerName()} are ${getPercentage()}% compatible`;
+  const percentageEl = document.querySelector('#percent');
+  percentageEl.textContent = `${percentage}%`;
+}
 
-const percentageEl = document.querySelector('#percent');
-percentageEl.textContent = `${getPercentage()}%`;
+helper()
 
 document.getElementById("player-messages").innerHTML = '<div class="event">game connected</div>';
-function updateChat() {
-    const chatText = document.querySelector('#player-messages');
-    chatText.innerHTML =
-    `<div class="event"><span class="username-formatted">${getPlayerName()}</span> and <span class="inputname-formatted">${getOtherPlayerName()}</span> are <span class="percentage">${getPercentage()}</span>% compatible</div>` + chatText.innerHTML;
-}
 
 async function saveScore(score) {
     const userName = getPlayerName();
@@ -102,73 +97,18 @@ function updateScoresLocal(newScore) {
   async function getPercentage() {
     try {
       // Get the latest high scores from the service
-      const response = await fetch('/api/score');
+      const userName = getPlayerName();
+      const otherName = getOtherPlayerName();
+      const response = await fetch(`/api/score/${userName} + ${otherName}`);
       const score = await response.json();
-      console.log(34)
       // Save the scores in case we go offline in the future
       localStorage.setItem('score', JSON.stringify(score));
+      return score.score
     } catch {
       // If there was an error then just use the last saved scores
       const scoreText = localStorage.getItem('score');
       if (scoreText) {
         score = JSON.parse(scoreText);
-      }
+        return score } 
     }
-    //   return localStorage.getItem('perc');
   }
-
-  // async function loadScores() {
-  //   let scores = [];
-  //   try {
-  //     // Get the latest high scores from the service
-  //     const response = await fetch('/api/scores');
-  //     scores = await response.json();
-  
-  //     // Save the scores in case we go offline in the future
-  //     localStorage.setItem('scores', JSON.stringify(scores));
-  //   } catch {
-  //     // If there was an error then just use the last saved scores
-  //     const scoresText = localStorage.getItem('scores');
-  //     if (scoresText) {
-  //       scores = JSON.parse(scoresText);
-  //     }
-  //   }
-  
-  // }
-
-// const response = await fetch('/api/score');
-// score = await response.json();
-  
-// saveScore(response)
-
-// try {
-//   const response = await fetch('/api/score');
-
-//   // Store what the service gave us as the high scores
-//   const scores = await response.json();
-//   localStorage.setItem('scores', JSON.stringify(scores));
-// } catch {
-//   // If there was an error then just track scores locally
-//   updateScoresLocal(newScore);
-// }
-
-// // const response = await fetch('/api/score');
-// try {
-//   // Get the latest high scores from the service
-//   const score = await fetch('/api/score');
-//   // scores = await response.json();
-
-//   // Save the scores in case we go offline in the future
-//   localStorage.setItem('score', JSON.stringify(score));
-// } catch {
-//   // If there was an error then just use the last saved scores
-//   const scoresText = localStorage.getItem('score');
-//   // if (scoresText) {
-//   //   scores = JSON.parse(scoresText);
-//   }
-
-// console.log(response)
-// // // const response = fetch('/api/score');
-// // // score = await response.json();
-
-// saveScore(getPercentage())

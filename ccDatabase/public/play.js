@@ -14,7 +14,7 @@ function calculate() {
     const inputNameEl = document.querySelector("input.inputname");
     localStorage.setItem("inputName", inputNameEl.value);
     // localStorage.setItem("perc", createPercentage());
-    saveScore(createPercentage())
+    // saveScore(createPercentage())
     window.location.href = "calculating.html";
   }
 

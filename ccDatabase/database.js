@@ -32,8 +32,8 @@ function getHighScores() {
 
 function getScore(coupleName) {
   const query = { name: coupleName };
-  const cursor = scoreCollection.find(query);
-  return cursor
+  const cursor = scoreCollection.findOne(query);
+  return cursor;
 }
 
 module.exports = { addScore, getHighScores, getScore };

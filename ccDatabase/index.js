@@ -29,9 +29,9 @@ apiRouter.post('/score', async (req, res) => {
 });
 
 // GetScore
-apiRouter.get('/score', async (req, res) => {
-  DB.getScore(JSONstringify(req.body).name);
-  res.send(req.body);
+apiRouter.get('/score/:name', async (req, res) => {
+  const newScore = await DB.getScore(req.params.name);
+  res.send(newScore);
 })
 
 // Return the application's default page if the path is unknown
