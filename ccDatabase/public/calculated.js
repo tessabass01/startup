@@ -1,6 +1,20 @@
 function getPlayerName() {
     return localStorage.getItem('userName');
-  }
+    // try {
+    // const response = await fetch(`/api/username`);
+    // const userName = await response.json();
+    // // Save the scores in case we go offline in the future
+    // localStorage.setItem('username', JSON.stringify(userName));
+    // return users.username
+  // } catch {
+  //   // If there was an error then just use the last saved scores
+  //   const userText = localStorage.getItem('userName');
+  //   if (userText) {
+  //     user = JSON.parse(userText);
+  //     return user } 
+//   }
+// }
+}
 
 function createPercentage() {
     return Math.floor(Math.random() * 100)
@@ -14,12 +28,15 @@ function calculate() {
 
 const matches = document.querySelectorAll('span.username-formatted');
 
-for (i = 0; i < matches.length; ++i) {
-  matches[i].textContent = getPlayerName();
-}
+// async function helper2() {
+  for (i = 0; i < matches.length; ++i) {
+    matches[i].textContent = getPlayerName();
+  }
+  const playerNameEl = document.querySelector('.username');
+  playerNameEl.textContent = getPlayerName();
 
-const playerNameEl = document.querySelector('.username');
-playerNameEl.textContent = getPlayerName();
+
+// helper2()
 
 function getOtherPlayerName() {
     return localStorage.getItem('inputName');
@@ -27,12 +44,13 @@ function getOtherPlayerName() {
 
 async function helper() {
   let percentage = await getPercentage();
+  let username = getPlayerName()
   const otherPlayerNameEl = document.querySelector('.inputname');
   otherPlayerNameEl.textContent = getOtherPlayerName();
 
   const chatText = document.querySelector('#player-messages');
     chatText.innerHTML =
-    `<div class="event"><span class="username-formatted">${getPlayerName()}</span> and <span class="inputname-formatted">${getOtherPlayerName()}</span> are <span class="percentage">${percentage}</span>% compatible</div>` + chatText.innerHTML;
+    `<div class="event"><span class="username-formatted">${username}</span> and <span class="inputname-formatted">${getOtherPlayerName()}</span> are <span class="percentage">${percentage}</span>% compatible</div>` + chatText.innerHTML;
 
   const percentageEl = document.querySelector('#percent');
   percentageEl.textContent = `${percentage}%`;
