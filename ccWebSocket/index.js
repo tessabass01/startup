@@ -105,19 +105,6 @@ apiRouter.get('/score/:name', async (req, res) => {
   res.send(newScore);
 })
 
-// // PostUsername
-// apiRouter.post('/username', async (req, res) => {
-//   console.log(req.body);
-//   const newUser = await DB.addName(req.body);
-//   res.send(newUser);
-// });
-
-// GetUsername
-// apiRouter.get('/username', async (_req, res) => {
-//   const newName = await DB.getName();
-//   res.send(newName);
-// })
-
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
   res.sendFile('index.html', {root: 'public'});
@@ -132,7 +119,7 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
