@@ -89,14 +89,14 @@
     padding: 1em 0;
   }
   div .friend {
-    color: rgb(153, 87, 148);
+    color: rgb(226, 43, 125);
     margin-left: 0.5em;
   }
   div .me {
-    color: rgb(87, 153, 117);
+    color: rgb(227, 111, 181);
   }
   div .system {
-    color: rgb(225, 103, 10);
+    color: rgb(255, 255, 255);
   }
   .name {
     padding: 1em 0;
