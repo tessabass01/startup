@@ -1,19 +1,5 @@
 function getPlayerName() {
     return localStorage.getItem('userName');
-    // try {
-    // const response = await fetch(`/api/username`);
-    // const userName = await response.json();
-    // // Save the scores in case we go offline in the future
-    // localStorage.setItem('username', JSON.stringify(userName));
-    // return users.username
-  // } catch {
-  //   // If there was an error then just use the last saved scores
-  //   const userText = localStorage.getItem('userName');
-  //   if (userText) {
-  //     user = JSON.parse(userText);
-  //     return user } 
-//   }
-// }
 }
 
 function createPercentage() {
@@ -28,15 +14,11 @@ function calculate() {
 
 const matches = document.querySelectorAll('span.username-formatted');
 
-// async function helper2() {
   for (i = 0; i < matches.length; ++i) {
     matches[i].textContent = getPlayerName();
   }
   const playerNameEl = document.querySelector('.username');
   playerNameEl.textContent = getPlayerName();
-
-
-// helper2()
 
 function getOtherPlayerName() {
     return localStorage.getItem('inputName');
