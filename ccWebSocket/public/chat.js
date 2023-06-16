@@ -20,10 +20,14 @@ appendMsg('friend', chat.name, chat.msg);
 // If the webSocket is closed then disable the interface
 socket.onclose = (event) => {
 appendMsg('system', 'websocket', 'disconnected');
-document.querySelector('#name-controls').disabled = true;
+// document.querySelector('#name-controls').disabled = true;
 document.querySelector('#chat-controls').disabled = true;
 };
 // }
+
+function getPlayerName() {
+    return localStorage.getItem('userName');
+  }
 
 // Send a message over the webSocket
 function sendMessage() {
@@ -32,8 +36,8 @@ function sendMessage() {
     console.log('butt');
     if (!!msg) {
         appendMsg('me', 'me', msg);
-        const name = document.querySelector('#my-name').value;
-        socket.send(`{"name":"${name}", "msg":"${msg}"}`);
+        // const name = document.querySelector('#my-name').value;
+        socket.send(`{"name":"${getPlayerName()}", "msg":"${msg}"}`);
         msgEl.value = '';
     }
 }
@@ -54,12 +58,12 @@ input.addEventListener('keydown', (e) => {
     }
 });
 
-// Disable chat if no name provided
-const chatControls = document.querySelector('#chat-controls');
-const myName = document.querySelector('#my-name');
-myName.addEventListener('keyup', (e) => {
-    chatControls.disabled = myName.value === '';
-});
+// // Disable chat if no name provided
+// const chatControls = document.querySelector('#chat-controls');
+// const myName = document.querySelector('#my-name');
+// myName.addEventListener('keyup', (e) => {
+//     chatControls.disabled = myName.value === '';
+// });
 
 
 // configureWebSocket()

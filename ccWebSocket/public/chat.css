@@ -102,3 +102,19 @@
     padding: 1em 0;
     float: left;
   }
+
+  h1 {
+    color: white;
+    padding-top: 1em;
+  }
+
+  .btn {
+    color: black;
+    background-color: white;
+    border: white;
+  }
+  
+  .btn:hover {
+  color:white;
+  background-color: black;
+  }
