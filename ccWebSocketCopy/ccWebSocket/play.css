@@ -1,0 +1,116 @@
+
+  .players {
+    flex: 1;
+    width: 100%;
+    padding: 0.5em;
+  }
+  
+  .welcome {
+    color: white;
+    float: right;
+    padding-right: 22px;
+    transform: translateY(30px)
+  }
+  
+  #player-messages {
+    padding-top: 0.25em;
+    opacity: 0.7;
+  }
+  
+  .event {
+    color: rgb(69, 69, 69);
+  }
+
+  .inputname-formatted {
+    color: red;
+  }
+
+  #heart {
+    position: relative;
+    width: 400px;
+    height: 360px;
+    margin-top: 40px;
+  }
+  
+  #heart::before, #heart::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 208px;
+    height: 320px;
+    border-radius: 200px 200px 0 0;
+    background: red;
+  }
+  
+  #heart::before {
+    left: 200px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+  
+  #heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+
+  #heart {
+    position: absolute;
+    top: 33vh;
+    z-index: 1;
+  }
+
+  .username {
+    color: black;
+    background-color: white;
+    border: solid darkgray thin;
+    float: left;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 5%;
+    width: 125px;
+    text-align: center;
+  }
+
+  .inputname {
+    color: black;
+    background-color: white;
+    border: solid darkgray thin;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 5%;
+    width: 125px;
+    text-align: center;
+    float: right;
+  }
+
+  .names {
+    top: -300px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .btn {
+    top: -50px;
+    position: relative;
+    z-index: 3;
+    left: 32px;
+  }
+
+  #percent {
+    position: relative;
+    top: -450px;
+    z-index: 3;
+    text-align: center;
+    font-size: 40px;
+    text-shadow: 2px 2px 2px red;
+  }
+
+  .animated-shape {
+    top: -33px;
+    position: relative;
+    z-index: 2;
+    height: 10px;
+    width: 400px;
+    background-color: #FFBEBE;
+  }

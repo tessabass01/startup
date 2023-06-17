@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Refresh" content="6; url='calculated.html'" />
+
+    <!-- Tell browsers not to scale the viewport automatically -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chemistry Calculator</title>
+    <link rel="icon" href="hearticon.ico" />
+
+    <!-- Include bootstrap CSS framework -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="play.css" />
+    <link rel="stylesheet" href="animation.css" />
+
+  </head>
+  <body class="bg-dark text-light">
+    <header class="container-fluid">
+      <nav class="navbar fixed-top navbar-dark">
+        <a class="navbar-brand" href="#">Chemistry Calculator<sup>&reg;</sup></a>
+        <menu class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="play.html">Play</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="scores.html">Scores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="chat.html">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+        </menu>
+      </nav>
+      <p class="welcome">Welcome, <span class="username-formatted">Mystery Player</span></p>
+    </header>
+
+    <main class="container-fluid">
+      <div class="players">
+        <div id="player-messages">
+          <div class="event">game connected</div>
+          <!-- <div class="event"><span class="username-formatted"></span> and <span class="inputname-formatted">Doug</span> are <span class="percentage">23</span>% compatible</div>
+          <div class="event"><span class="username-formatted"></span> and <span class="inputname-formatted">George</span> are <span class="percentage">74</span>% compatible</div>
+          <div class="event"><span class="username-formatted"></span> and <span class="inputname-formatted">Bill</span> are <span class="percentage">13</span>% compatible</div> -->
+        </div>
+      </div>
+
+        <div class="game">
+            <div class="animated-shape"></div>
+            <div id="heart"></div>
+            <div class="names">
+                <div class="username"></div>
+                <div class="inputname"></div>
+            </div>
+            <div class="calculate-button">
+                <form method="get" action="calculating.html">
+                    <button type="submit" class="btn btn-primary">Calculate</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-dark text-muted">
+      <div class="container-fluid">
+        <span class="text-reset">Tessa Bass</span>
+        <a class="text-reset" href="https://github.com/tessabass01/startup">Source</a>
+      </div>
+    </footer>
+    <script defer src="calculating.js"></script>
+  </body>
+</html>
