@@ -3,6 +3,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import {Login} from './login/login'
+import {AuthState} from './login/authState';
 import {About} from './about/about'
 import {Play} from './play/play'
 import {Scores} from './scores/scores'
@@ -13,6 +14,11 @@ function NotFound() {
 }
 
 export default function App() {
+
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+    const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+    const [authState, setAuthState] = React.useState(currentAuthState);
+
     return (
     <BrowserRouter>
     <div className="app bg-dark">
@@ -40,7 +46,20 @@ export default function App() {
     </header>
 
 <Routes>
-    <Route path='/' element={<Login />} exact />
+<Route
+            path='/'
+            element={
+              <Login
+                userName={userName}
+                authState={authState}
+                onAuthChange={(userName, authState) => {
+                  setAuthState(authState);
+                  setUserName(userName);
+                }}
+              />
+            }
+            exact
+          />
     <Route path='/play' element={<Play />} />
     <Route path='/scores' element={<Scores />} />
     <Route path='/chat' element={<Chat />} />
