@@ -62,22 +62,22 @@ export function Play(props) {
       }
 
       async function getPercentage() {
-        try {
+        // try {
           // Get the latest high scores from the service
-          const userName = getPlayerName();
-          const otherName = getOtherPlayerName();
-          const response = await fetch(`/api/score/${userName} + ${otherName}`);
+        //   const userName = getPlayerName();
+        //   const otherName = getOtherPlayerName();
+          const response = await fetch(`/api/score/${userName} + ${inputName}`);
           const score = await response.json();
           // Save the scores in case we go offline in the future
           localStorage.setItem('score', JSON.stringify(score));
-          return score.score
-        } catch {
-          // If there was an error then just use the last saved scores
-          const scoreText = localStorage.getItem('score');
-          if (scoreText) {
-            score = JSON.parse(scoreText);
-            return score } 
-        }
+          return score.score;
+        // } catch {
+        //   // If there was an error then just use the last saved scores
+        //   const scoreText = localStorage.getItem('score');
+        //   if (scoreText) {
+        //     const score = JSON.parse(scoreText);
+        //     return score.score } 
+        // }
       }
 
     async function calculate() {
@@ -85,8 +85,9 @@ export function Play(props) {
         const percent = createPercentage();
         setState(true);
         saveScore(percent);
+        const realPercent = await getPercentage()
         setTimeout(() => {setState(false)}, 6000);
-        setTimeout(() => {setPercentage(`${percent}%`)}, 6000);
+        setTimeout(() => {setPercentage(`${realPercent}%`)}, 6000);
       }
 
     return (
@@ -106,8 +107,8 @@ export function Play(props) {
                   <input
                         className='inputname'
                         type='text'
-                        // value={inputName}
-                        onChange={(e) => localStorage.setItem(inputName, e.target.value)}
+                        value={inputName}
+                        onChange={(e) => setInputName(e.target.value)}
                         placeholder='Their name here'
                     />
               </div>
