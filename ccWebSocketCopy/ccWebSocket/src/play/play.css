@@ -98,6 +98,7 @@
   }
 
   #percent {
+    color: white;
     position: relative;
     top: -450px;
     z-index: 3;
@@ -107,10 +108,36 @@
   }
 
   .animated-shape {
-    top: -33px;
+    top: -28px;
     position: relative;
     z-index: 2;
     height: 10px;
     width: 400px;
-    background-color: #FFBEBE;
+    background-color: #FFBEBE;;
   }
+
+.calculating {
+    top: -28px;
+    position: relative;
+    z-index: 2;
+    height: 10px;
+    width: 400px;
+    background-color: #FFBEBE;;
+    /* #FFBEBE; */
+
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+
+@keyframes pulse {
+    from {
+        height: 10px
+    }
+    50% {
+        height: 370px
+    }
+    to {
+        height: 10px
+    }
+}

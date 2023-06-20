@@ -6,8 +6,6 @@ import {Login} from './login/login'
 import {AuthState} from './login/authState';
 import {About} from './about/about'
 import {Play} from './play/play'
-import {Calculating} from './calculating/calculating'
-import {Calculated} from './calculated/calculated'
 import {Scores} from './scores/scores'
 import {Chat} from './chat/chat'
 
@@ -15,10 +13,11 @@ function NotFound() {
     return <main className="container-fluid text-center">404: Return to sender. Address unknown.</main>;
 }
 
+
+
 export default function App() {
 
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
-    const [inputName, setInputName] = React.useState(localStorage.getItem('inputName') || '');
     const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
     const [authState, setAuthState] = React.useState(currentAuthState);
 
@@ -63,9 +62,7 @@ export default function App() {
             }
             exact
           />
-    <Route path='/play' element={<Play userName={userName} inputName={inputName} onPress={() => {setInputName(inputName)}} />} />
-    <Route path='/calculating' element={<Calculating userName={userName} inputName={inputName} />} />
-    <Route path='/calculated' element={<Calculated userName={userName} inputName={inputName}/>} />
+    <Route path='/play' element={<Play userName={userName} />} />
     <Route path='/scores' element={<Scores />} />
     <Route path='/chat' element={<Chat />} />
     <Route path='/about' element={<About />} />
