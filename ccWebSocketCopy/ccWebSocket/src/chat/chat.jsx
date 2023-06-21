@@ -1,92 +1,127 @@
 import React from 'react';
-import { useEffect } from 'react';
-// import { GameEvent, GameNotifier } from './gameNotifier';
+// import { useEffect } from 'react';
+import { Types, GameNotifier } from './helper';
 import './chat.css'
 
 export function Chat(props) {
 
-// function configureWebSocket() {
-// Adjust the webSocket protocol to what is being used for HTTP
-const [userName, setUserName] = React.useState(props.userName);
-const [messages, setMsgList] = React.useState([]);
-const [message, setMessage] = React.useState('');
+    const [userName, setUserName] = React.useState(props.userName);
+    const [messages, setMsgList] = React.useState([]);
+    const [message, setMessage] = React.useState('');
 
-const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+// const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+// const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
-// Display that we have opened the webSocket
-useEffect(() => {
-socket.onopen = (event) => {
-    console.log('open');
-appendMsg('system', 'websocket', 'connected');
-};
-}, []);
+    React.useEffect(() => {
+        GameNotifier.addHandler(handleGameEvent);
 
-// Display messages we receive from our friends
-useEffect(() => {
-socket.onmessage = async (event) => {
-    console.log('message received');
-const text = await event.data.text();
-const chat = JSON.parse(text);
-appendMsg('friend', chat.name, chat.msg);
-};
-}, []);
+        return () => {
+        GameNotifier.removeHandler(handleGameEvent);
+        };
+    });
 
-// If the webSocket is closed then disable the interface
-socket.onclose = (event) => {
-appendMsg('system', 'websocket', 'disconnected');
-// document.querySelector('#name-controls').disabled = true;
-document.querySelector('#chat-controls').disabled = true;
-};
-// }
-
-// function getPlayerName() {
-//     return localStorage.getItem('userName');
-//   }
-
-// function createMessageArray() {
-//     const messageArray = [];
-//     for (const [i, msg] of messages.entries()) {
-//       let message = 'unknown';
-//       if (msg.type === GameEvent.End) {
-//         message = `scored ${msg.value.score}`;
-//       } else if (msg.type === GameEvent.Start) {
-//         message = `started a new game`;
-//       } else if (msg.type === GameEvent.System) {
-//         message = msg.value.msg;
-//       }
-//     }
-// }
-
-// Send a message over the webSocket
-function sendMessage() {
-    console.log('sending');
-    if (message) {
-        // appendMsg('me', 'me', message);
-        // const name = document.querySelector('#my-name').value;
-        socket.send(`{"name":"${userName}", "msg":"${message}"}`);
-        // setMessage('');
+    function handleGameEvent(event) {
+        setMsgList([...messages, event]);
     }
-}
 
-// Create one long list of messages
-function appendMsg(cls, from, msg) {
+    function createMessageArray() {
+        const messageArray = [];
+        for (const [i, event] of messages.entries()) {
+        //   let newMessage = event.msg;
+        //   if (event.type === Types.Connected) {
+        //     newMessage = `scored ${event.value.score}`;
+        //   } else if (event.type === Types.Disconnected) {
+        //     newMessage = `started a new game`;
+        //   } else if (event.type === Types.Friend) {
+        //     newMessage = event.msg;
+        //   } else if (event.type === Types.Me) {
+        //     newMessage = event.value.msg;
+        //   }
+    
+          messageArray.push(<div key={i} className='event'><span className={event.cls}>{event.from}</span>{`: ${event.msg}`}</div>);
+        }
+        return messageArray;
+      }
+// Display that we have opened the webSocket
+// useEffect(() => {
+// socket.onopen = (event) => {
+//     console.log('open');
+// createMessageArray('system', 'websocket', 'connected');
+// };
+// // }, []);
 
-    //   messageArray.push(
-        // <div key={i} className='event'>
-        //   <span className={'player-event'}>{event.from.split('@')[0]}</span>
-        //   {message}
-        // </div>
-    //   );
-    // }
-    // return messageArray;
-//   }
+// // Display messages we receive from our friends
+// useEffect(() => {
+// socket.onmessage = async (event) => {
+//     console.log('message received');
+// const text = await event.data.text();
+// const chat = JSON.parse(text);
+// // createMessageArray(chat, 'friend');
+// createMessageArray('friend', chat.name, chat.msg);
+// };
+// }, []);
 
-    const chatText = document.querySelector('#chat-text');
-    chatText.innerHTML =
-    `<div><span class="${cls}">${from}</span>: ${msg}</div>`
-     + chatText.innerHTML;
-}
+// // If the webSocket is closed then disable the interface
+// socket.onclose = (event) => {
+// createMessageArray('system', 'websocket', 'disconnected');
+// // document.querySelector('#name-controls').disabled = true;
+// document.querySelector('#chat-controls').disabled = true;
+// };
+// // }
+
+// // function getPlayerName() {
+// //     return localStorage.getItem('userName');
+// //   }
+
+// function createMessageArray(cls, from, msg) {
+//     // socket.onmessage = async (event) => {
+//     //     // console.log('message received');
+//     // const text = await event.data.text();
+//     // const chat = JSON.parse(text);
+//     // for (const [i, msg] of messages.entries()) {
+//     //   let newMsg = 'unknown';
+//     //   if (userName !== chat.name) {
+//     //     newMsg = `${chat.name}: ${chat.msg}`;
+//     //     newMsg = `me: ${message}`;
+//     //   }
+//       messages.push(
+//         <div><span className={cls}>{from}</span>{`: ${msg}`}</div>
+//       );
+//     setMsgList(messages);
+//     console.log(messages);
+//     // return messages;
+//     }
+    
+
+
+// // Send a message over the webSocket
+//     function sendMessage() {
+//         console.log('sending');
+//         if (message) {
+//             createMessageArray('me', 'me', message);
+//             // const name = document.querySelector('#my-name').value;
+//             socket.send(`{"name":"${userName}", "msg":"${message}"}`);
+//             // setMessage('');
+//         }
+//     }
+
+// // Create one long list of messages
+//     function appendMsg(cls, from, msg) {
+    
+//       messages.push(
+//         <div><span className={cls}>{from}</span>{`: ${msg}`}</div>
+//       );
+//     setMsgList(messages);
+//     console.log(messages);
+//     // return messages;
+//     }
+
+
+    // const chatText = document.querySelector('#chat-text');
+    // chatText.innerHTML =
+    // `<div><span class="${cls}">${from}</span>: ${msg}</div>`
+    //  + chatText.innerHTML;
+
 
 // Send message on enter keystroke
 // const input = document.querySelector('#new-msg');
@@ -109,9 +144,9 @@ function appendMsg(cls, from, msg) {
             // 
             placeholder='I love you...'
           />
-          <button onClick={() => sendMessage()} className="btn btn-primary">Send</button>
+          <button onClick={() => GameNotifier.broadcastEvent(userName, message, setMessage)} className="btn btn-primary">Send</button>
         </fieldset>
-        <div id="chat-text"></div>
+        <div className="chat-text">{createMessageArray()}</div>
       </main>
     );
 }
