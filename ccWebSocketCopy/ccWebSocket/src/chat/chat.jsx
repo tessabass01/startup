@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
+// import { GameEvent, GameNotifier } from './gameNotifier';
 import './chat.css'
 
 export function Chat(props) {
@@ -43,37 +44,48 @@ document.querySelector('#chat-controls').disabled = true;
 //     return localStorage.getItem('userName');
 //   }
 
-function createMessageArray() {
-    const messageArray = [];
-    for (const [i, msg] of messages.entries()) {
-      let message = 'unknown';
-      if (msg.type === GameEvent.End) {
-        message = `scored ${msg.value.score}`;
-      } else if (msg.type === GameEvent.Start) {
-        message = `started a new game`;
-      } else if (msg.type === GameEvent.System) {
-        message = msg.value.msg;
-      }
-    }
-}
+// function createMessageArray() {
+//     const messageArray = [];
+//     for (const [i, msg] of messages.entries()) {
+//       let message = 'unknown';
+//       if (msg.type === GameEvent.End) {
+//         message = `scored ${msg.value.score}`;
+//       } else if (msg.type === GameEvent.Start) {
+//         message = `started a new game`;
+//       } else if (msg.type === GameEvent.System) {
+//         message = msg.value.msg;
+//       }
+//     }
+// }
 
 // Send a message over the webSocket
 function sendMessage() {
     console.log('sending');
     if (message) {
-        appendMsg('me', 'me', message);
+        // appendMsg('me', 'me', message);
         // const name = document.querySelector('#my-name').value;
         socket.send(`{"name":"${userName}", "msg":"${message}"}`);
-        setMessage('');
+        // setMessage('');
     }
 }
 
 // Create one long list of messages
 function appendMsg(cls, from, msg) {
+
+    //   messageArray.push(
+        // <div key={i} className='event'>
+        //   <span className={'player-event'}>{event.from.split('@')[0]}</span>
+        //   {message}
+        // </div>
+    //   );
+    // }
+    // return messageArray;
+//   }
+
     const chatText = document.querySelector('#chat-text');
     chatText.innerHTML =
-    `<div><span class="${cls}">${from}</span>: ${msg}</div>` +
-    chatText.innerHTML;
+    `<div><span class="${cls}">${from}</span>: ${msg}</div>`
+     + chatText.innerHTML;
 }
 
 // Send message on enter keystroke
@@ -93,7 +105,8 @@ function appendMsg(cls, from, msg) {
           <legend>Chat</legend>
           <input
             type='text'
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {setMessage(e.target.value)}}
+            // 
             placeholder='I love you...'
           />
           <button onClick={() => sendMessage()} className="btn btn-primary">Send</button>
@@ -102,3 +115,50 @@ function appendMsg(cls, from, msg) {
       </main>
     );
 }
+
+//     const userName = props.userName;
+
+//   const [events, setEvent] = React.useState([]);
+
+//   React.useEffect(() => {
+//     GameNotifier.addHandler(handleGameEvent);
+
+//     return () => {
+//       GameNotifier.removeHandler(handleGameEvent);
+//     };
+//   });
+
+//   function handleGameEvent(event) {
+//     setEvent([...events, event]);
+//   }
+
+//   function createMessageArray() {
+//     const messageArray = [];
+//     for (const [i, event] of events.entries()) {
+//       let message = 'unknown';
+//       if (event.type === GameEvent.End) {
+//         message = `scored ${event.value.score}`;
+//       } else if (event.type === GameEvent.Start) {
+//         message = `started a new game`;
+//       } else if (event.type === GameEvent.System) {
+//         message = event.value.msg;
+//       }
+
+//       messageArray.push(
+//         <div key={i} className='event'>
+//           <span className={'player-event'}>{event.from.split('@')[0]}</span>
+//           {message}
+//         </div>
+//       );
+//     }
+//     return messageArray;
+//   }
+
+//   return (
+//     <div className='players'>
+//       Player
+//       <span className='player-name'>{userName}</span>
+//       <div id='player-messages'>{createMessageArray()}</div>
+//     </div>
+//   );
+// }
