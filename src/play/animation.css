@@ -1,0 +1,25 @@
+.calculating {
+    top: -50px;
+    position: relative;
+    z-index: 2;
+    height: 10px;
+    width: 400px;
+    background-color: #FFBEBE;
+    /* #FFBEBE; */
+
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-iteration-count: 3;
+  }
+
+@keyframes pulse {
+    from {
+        height: 10px
+    }
+    50% {
+        height: 400px
+    }
+    to {
+        height: 10px
+    }
+}

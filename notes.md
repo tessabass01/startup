@@ -590,3 +590,25 @@ Main Steps for creating a project:
 5. Add `require('<package name here>')` to your application's JavaScript
 6. Use the code the package provides in your JavaScript
 7. Run your code with `node index.js`
+
+## For the Final
+Linux Daemon CAN fork other processes
+- Executes independent of a user
+- PM2 is an example
+- Starts when computer is rebooted
+Default in a mongodb query is an ‘and’ which means both clauses (regular expression) must be satisfied
+Purpose of jsx isn’t to combine css, html, and JS
+You can use fetch in front and back end
+‘Language’ is not a standard http header (Cookie, Host, and Content-Type)
+LOOK at COMMONLY USED HTTP HEADERS
+Port 80 is reserved for HTTP
+Port 443 is reserved for HTTPS
+Port 22 is reserved for SSH
+Status codes:
+100 - info
+200 - success
+300 - redirects or caching
+400 - client errors
+500 - server errors
+
+Cookies allow a server to store data on a client
